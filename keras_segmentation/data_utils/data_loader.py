@@ -212,9 +212,13 @@ def verify_segmentation_dataset(images_path, segs_path,
 
         return_value = True
         for im_fn, seg_fn in tqdm(img_seg_pairs):
-            img = cv2.imread(im_fn)/255
-            seg = cv2.imread(seg_fn)/255
+            img = cv2.imread(im_fn)
+            seg = cv2.imread(seg_fn)
             # Check dimensions match
+            print(img.shape)
+            img=img/255
+            seg=seg/255
+            print(img.shape)
             if not img.shape == seg.shape:
                 return_value = False
                 print("The size of image {0} and its segmentation {1} "
@@ -226,7 +230,7 @@ def verify_segmentation_dataset(images_path, segs_path,
                 max_pixel_value = np.max(seg[:, :, 0])
                 if max_pixel_value >= n_classes:
                     return_value = False
-                    print("PRUEBA VIV The pixel values of the segmentation image {0} "
+                    print("PRUEBA The pixel values of the segmentation image {0} "
                           "violating range [0, {1}]. "
                           "Found maximum pixel value {2}"
                           .format(seg_fn, str(n_classes - 1), max_pixel_value))
