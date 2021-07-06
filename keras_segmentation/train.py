@@ -77,7 +77,7 @@ def train(model,
           val_steps_per_epoch=512,
           gen_use_multiprocessing=False,
           ignore_zero_class=False,
-          optimizer_name='adam',
+          optimizer_name=tf.keras.optimizers.Adam(learning_rate=0.00001),
           do_augment=False,
           augmentation_name="aug_all",
           callbacks=None,
@@ -117,7 +117,7 @@ def train(model,
             loss_k = 'categorical_crossentropy'
 
         model.compile(loss=loss_k,
-                      optimizer=optimizer_name(learning_rate=0.00001),
+                      optimizer=optimizer_name,
                       metrics=['binary_accuracy'])
 
     if checkpoints_path is not None:
