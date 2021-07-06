@@ -9,7 +9,6 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 import tensorflow as tf
 import glob
 import sys
-from tensorflow import keras
 
 def find_latest_checkpoint(checkpoints_path, fail_safe=True):
 
@@ -59,8 +58,8 @@ class CheckpointsCallback(Callback):
 
 
 def train(model,
-          train_images,
-          train_annotations,
+          train_images/255,
+          train_annotations/255,
           input_height=None,
           input_width=None,
           n_classes=None,
@@ -119,7 +118,7 @@ def train(model,
 
         model.compile(loss=loss_k,
                       optimizer=optimizer_name,
-                      metrics=['binary_accuracy'])
+                      metrics=['accuracy'])
 
     if checkpoints_path is not None:
         config_file = checkpoints_path + "_config.json"
@@ -207,3 +206,4 @@ def train(model,
                   validation_steps=val_steps_per_epoch,
                   epochs=epochs, callbacks=callbacks,
                   use_multiprocessing=gen_use_multiprocessing, initial_epoch=initial_epoch)
+
