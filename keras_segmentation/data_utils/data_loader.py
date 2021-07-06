@@ -131,7 +131,7 @@ def get_pairs_from_paths(images_path, segs_path, ignore_non_matching=False, othe
 
 def get_image_array(image_input,
                     width, height,
-                    imgNorm="sub_mean", ordering='channels_first', read_image_type=1):
+                    imgNorm="divide", ordering='channels_first', read_image_type=1):
     """ Load image array from input """
 
     if type(image_input) is np.ndarray:
