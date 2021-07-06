@@ -9,6 +9,16 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 import tensorflow as tf
 import glob
 import sys
+import tensorflow.keras.backend as K
+
+def dice_coef1(y_true, y_pred, smooth=1e-6):
+    #print(y_true)
+    #print(y_pred)
+    intersection = K.sum(y_true * y_pred, axis=[1,2,3])
+    union = K.sum(y_true, axis=[1,2,3]) + K.sum(y_pred, axis=[1,2,3])
+    dice = K.mean((2. * intersection + smooth)/(union + smooth), axis=0)
+    
+    return dice
 
 def find_latest_checkpoint(checkpoints_path, fail_safe=True):
 
@@ -118,7 +128,7 @@ def train(model,
 
         model.compile(loss=loss_k,
                       optimizer=optimizer_name,
-                      metrics=['accuracy'])
+                      metrics=['binary_accuracy',dice_coef1])
 
     if checkpoints_path is not None:
         config_file = checkpoints_path + "_config.json"
