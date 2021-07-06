@@ -117,7 +117,7 @@ def train(model,
             loss_k = 'categorical_crossentropy'
 
         model.compile(loss=loss_k,
-                      optimizer=optimizer_name,
+                      optimizer=optimizer_name(learning_rate=0.00001),
                       metrics=['binary_accuracy'])
 
     if checkpoints_path is not None:
