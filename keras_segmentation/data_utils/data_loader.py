@@ -226,7 +226,7 @@ def verify_segmentation_dataset(images_path, segs_path,
                 max_pixel_value = np.max(seg[:, :, 0])
                 if max_pixel_value >= n_classes:
                     return_value = False
-                    print("The pixel values of the segmentation image {0} "
+                    print("PRUEBA VIV The pixel values of the segmentation image {0} "
                           "violating range [0, {1}]. "
                           "Found maximum pixel value {2}"
                           .format(seg_fn, str(n_classes - 1), max_pixel_value))
