@@ -58,8 +58,8 @@ class CheckpointsCallback(Callback):
 
 
 def train(model,
-          train_images/255,
-          train_annotations/255,
+          train_images,
+          train_annotations,
           input_height=None,
           input_width=None,
           n_classes=None,
