@@ -215,10 +215,9 @@ def verify_segmentation_dataset(images_path, segs_path,
             img = cv2.imread(im_fn)
             seg = cv2.imread(seg_fn)
             # Check dimensions match
-            print(img.shape)
             img=img/255
             seg=seg/255
-            print(img.shape)
+            print("me actualice")
             if not img.shape == seg.shape:
                 return_value = False
                 print("The size of image {0} and its segmentation {1} "
