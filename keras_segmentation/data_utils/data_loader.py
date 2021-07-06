@@ -217,7 +217,8 @@ def verify_segmentation_dataset(images_path, segs_path,
             # Check dimensions match
             img=img/255
             seg=seg/255
-            print("me actualice")
+            print(img.max(),seg.max())
+            
             if not img.shape == seg.shape:
                 return_value = False
                 print("The size of image {0} and its segmentation {1} "
